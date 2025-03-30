@@ -1,6 +1,5 @@
 import express from 'express'
 import authRoute from './routes/auth.route.js'
-import messageRoutes from "./routes/message.route.js"
 import dotenv from 'dotenv';
 import { connectDb } from './libs/db.js';
 import cors from "cors"
@@ -15,7 +14,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors())
 app.use('/api/auth',authRoute)
-app.use('/api/message',messageRoutes)
 
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)

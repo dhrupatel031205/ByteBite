@@ -14,7 +14,7 @@ export default function SplashPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        Welcome to DhruvChat!
+        Welcome to ByteBite!
       </motion.h1>
 
       {/* Button Container */}

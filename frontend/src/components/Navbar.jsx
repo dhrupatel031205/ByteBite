@@ -24,7 +24,7 @@ export default function Navbar() {
         whileTap={{ scale: 0.95 }}
         onClick={() => navigate('/home')}
       >
-        DhruvChat
+        ByteBite
       </motion.div>
 
       {/* Right Side - Profile and Logout */}

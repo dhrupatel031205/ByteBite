@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,30 +18,30 @@ export default function Login() {
       ...formData,
       [name]: value,
     });
-    setError('');
+    setError("");
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      setError('All fields are required!');
+      setError("All fields are required!");
       return;
     }
-  
+
     try {
-      const req = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const req = await fetch("http://localhost:5001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await req.json();
       if (!req.ok) throw new Error(data.msg);
-      navigate('/home');
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
   };
-  
+
   return (
     <div style={styles.container}>
       <motion.h1
@@ -81,8 +81,8 @@ export default function Login() {
 
         {/* Sign-Up Link */}
         <p style={styles.signupText}>
-          Don't have an account?{' '}
-          <span onClick={() => navigate('/signup')} style={styles.signupLink}>
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/signup")} style={styles.signupLink}>
             Sign up
           </span>
         </p>
@@ -103,61 +103,61 @@ export default function Login() {
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    background: 'linear-gradient(135deg, #4f46e5, #ec4899)',
-    color: 'white',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+    background: "linear-gradient(135deg, #4f46e5, #ec4899)",
+    color: "white",
   },
   heading: {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
-    marginBottom: '20px',
+    fontSize: "2.5rem",
+    fontWeight: "bold",
+    marginBottom: "20px",
   },
   form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-    width: '100%',
-    maxWidth: '400px',
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
+    width: "100%",
+    maxWidth: "400px",
   },
   input: {
-    padding: '12px 20px',
-    fontSize: '1rem',
-    borderRadius: '30px',
-    border: 'none',
-    outline: 'none',
-    backgroundColor: '#f1f1f1',
-    color: '#333',
-    transition: 'background-color 0.3s ease',
+    padding: "12px 20px",
+    fontSize: "1rem",
+    borderRadius: "30px",
+    border: "none",
+    outline: "none",
+    backgroundColor: "#f1f1f1",
+    color: "#333",
+    transition: "background-color 0.3s ease",
   },
   button: {
-    padding: '12px 20px',
-    fontSize: '1rem',
-    fontWeight: '600',
-    color: 'white',
-    backgroundColor: '#3b82f6',
-    border: 'none',
-    borderRadius: '30px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
+    padding: "12px 20px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    color: "white",
+    backgroundColor: "#3b82f6",
+    border: "none",
+    borderRadius: "30px",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
   },
   error: {
-    color: '#ff4d4d',
-    fontSize: '0.9rem',
-    marginTop: '-10px',
+    color: "#ff4d4d",
+    fontSize: "0.9rem",
+    marginTop: "-10px",
   },
   signupText: {
-    fontSize: '0.9rem',
-    color: '#f1f1f1',
-    textAlign: 'center',
+    fontSize: "0.9rem",
+    color: "#f1f1f1",
+    textAlign: "center",
   },
   signupLink: {
-    color: '#93c5fd',
-    fontWeight: '600',
-    cursor: 'pointer',
-    textDecoration: 'underline',
+    color: "#93c5fd",
+    fontWeight: "600",
+    cursor: "pointer",
+    textDecoration: "underline",
   },
 };

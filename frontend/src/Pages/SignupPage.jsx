@@ -26,7 +26,7 @@ export default function SignUp() {
     e.preventDefault();
   
     try {
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
+      const res = await fetch('http://localhost:5001/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -36,7 +36,7 @@ export default function SignUp() {
       if (!res.ok) throw new Error(data.msg);
   
       localStorage.setItem('token', data.token);
-      navigate('/home');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message);
     }

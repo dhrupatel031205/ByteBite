@@ -3,8 +3,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import SplashPage from "./Pages/SplashPage";
 import Login from "./Pages/LoginPage.jsx";
 import SignupPage from "./Pages/SignupPage.jsx";
-import HomePage from "./Pages/HomePage.jsx";
-import ProfilePage from "./Pages/ProfilePage.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
+import SmartShopping from "./Pages/SmartShopping.jsx";
 
 export default function App() {
   return (
@@ -13,8 +13,8 @@ export default function App() {
         <Route path="/" element={<SplashPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/smartshopping" element={<SmartShopping />} />
       </Routes>
     </Router>
   );

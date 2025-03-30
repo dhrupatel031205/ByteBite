@@ -1,30 +1,51 @@
 {
   "name": "frontend",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "framer-motion": "^12.6.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hot-toast": "^2.5.2",
-    "react-router-dom": "^7.4.0"
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.4.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"npm run frontend\" \"npm run backend\" \"npm run model1\" \"npm run model2\" \"npm run model3\" \"npm run model4\"",
+    "frontend": "react-scripts start",
+    "backend": "cd ../backend && cross-env NODE_ENV=development nodemon server.js",
+    "model1": "cd ../ai && python model1.py",
+    "model2": "cd ../ai && python model2.py",
+    "model3": "cd ../ai && python model3.py",
+    "model4": "cd ../ai && python model4.py",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "vite": "^6.2.3"
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0",
+    "concurrently": "^9.1.2"
   }
 }

@@ -1,96 +1,140 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Navbar() {
-  const navigate = useNavigate();
+function Navbar() {
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("user")); // Get user details
 
-  const handleLogout = () => {
-    console.log('User logged out');
-    navigate('/');
-  };
+    // Logout function
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
 
-  return (
-    <motion.nav
-      style={styles.navbar}
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 60, damping: 15 }}
-    >
-      {/* Left Side - Brand */}
-      <motion.div
-        style={styles.brand}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => navigate('/home')}
-      >
-        ByteBite
-      </motion.div>
+    return (
+        <nav style={navbarStyle}>
+            {/* Left: Logo */}
+            <h2 style={logoStyle} onClick={() => navigate("/home")}>
+                SmartKitchen
+            </h2>
 
-      {/* Right Side - Profile and Logout */}
-      <div style={styles.actions}>
-        <motion.button
-          style={styles.button}
-          whileHover={{
-            scale: 1.1,
-            backgroundColor: '#60a5fa', // Lighter blue on hover
-            transition: { duration: 0.2 },
-          }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => navigate('/profile')}
-        >
-          Profile
-        </motion.button>
-        <motion.button
-          style={styles.button}
-          whileHover={{
-            scale: 1.1,
-            backgroundColor: '#f87171', // Red color on hover
-            transition: { duration: 0.2 },
-          }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleLogout}
-        >
-          Logout
-        </motion.button>
-      </div>
-    </motion.nav>
-  );
+            {/* Center: AI Models Navigation */}
+            <div>
+                <Link to="/model1" style={linkStyle}>Model 1</Link>
+                <Link to="/model2" style={linkStyle}>Model 2</Link>
+                <Link to="/model3" style={linkStyle}>Model 3</Link>
+                <Link to="/model4" style={linkStyle}>Model 4</Link>
+            </div>
+
+            {/* Right: Search, Notifications, Profile/Login */}
+            <div style={rightMenuStyle}>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    style={searchStyle}
+                />
+                <span style={iconStyle}>🔔</span>
+
+                {user ? (
+                    <>
+                        <p
+                            onClick={() => navigate("/profile")}
+                            style={profileStyle}
+                        >
+                            {user.name}
+                        </p>
+                        <button onClick={handleLogout} style={logoutButtonStyle}>
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button onClick={() => navigate("/login")} style={authButtonStyle}>
+                            Login
+                        </button>
+                        <button onClick={() => navigate("/signup")} style={authButtonStyle}>
+                            Signup
+                        </button>
+                    </>
+                )}
+            </div>
+        </nav>
+    );
 }
 
-const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '12px 24px',
-    backgroundColor: '#4f46e5',
-    color: '#fff',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-  },
-  brand: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    transition: 'color 0.3s ease',
-  },
-  actions: {
-    display: 'flex',
-    gap: '15px',
-  },
-  button: {
-    padding: '8px 16px',
-    fontSize: '1rem',
-    fontWeight: '500',
-    color: '#fff',
-    backgroundColor: '#3b82f6',
-    border: 'none',
-    borderRadius: '20px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
-    outline: 'none',
-  },
+// ✅ Styles
+const navbarStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "12px 25px",
+    background: "linear-gradient(90deg, #00C853, #00E676)",
+    color: "#fff"
 };
+
+const logoStyle = {
+    margin: 0,
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "22px"
+};
+
+const linkStyle = {
+    margin: "0 12px",
+    color: "#fff",
+    textDecoration: "none",
+    fontWeight: "bold",
+    transition: "color 0.3s",
+    cursor: "pointer"
+};
+
+// Add hover effect
+linkStyle[":hover"] = { color: "#FFD700" };
+
+const rightMenuStyle = {
+    display: "flex",
+    alignItems: "center"
+};
+
+const searchStyle = {
+    padding: "6px",
+    borderRadius: "5px",
+    border: "none",
+    marginRight: "10px"
+};
+
+const iconStyle = {
+    marginRight: "15px",
+    cursor: "pointer",
+    fontSize: "20px"
+};
+
+const profileStyle = {
+    cursor: "pointer",
+    textDecoration: "underline",
+    fontWeight: "bold",
+    marginRight: "10px"
+};
+
+const authButtonStyle = {
+    padding: "6px 12px",
+    marginLeft: "10px",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "bold",
+    background: "#fff",
+    color: "#00C853",
+    borderRadius: "5px",
+    transition: "background 0.3s"
+};
+
+// Hover effect for buttons
+authButtonStyle[":hover"] = { background: "#ddd" };
+
+const logoutButtonStyle = {
+    ...authButtonStyle,
+    background: "#FF3D00",
+    color: "#fff"
+};
+
+export default Navbar;

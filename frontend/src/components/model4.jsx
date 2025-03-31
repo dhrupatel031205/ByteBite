@@ -1,7 +1,10 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const Model4 = () => {
     return (
+        <>
+        <Navbar></Navbar>
         <div
             style={{
                 display: "flex",
@@ -25,6 +28,7 @@ const Model4 = () => {
                 }}
             ></iframe>
         </div>
+        </>
     );
 };
 

@@ -13,8 +13,8 @@ function Navbar() {
     return (
         <nav style={navbarStyle}>
             {/* Left: Logo */}
-            <h2 style={logoStyle} onClick={() => navigate("/home")}>
-                SmartKitchen
+            <h2 style={logoStyle} onClick={() => navigate("/dashbord")}>
+                ByteBite
             </h2>
 
             {/* Center: AI Models Navigation */}

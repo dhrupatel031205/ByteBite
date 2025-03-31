@@ -6,7 +6,7 @@ from datasets import load_dataset
 # Load a public food recipe dataset from Hugging Face
 dataset = load_dataset("food101")
 recipes_df = pd.DataFrame(dataset['train'])
-
+   
 def generate_recipe(available_ingredients):
     """Filters a dataset for recipes using available ingredients."""
     for index, row in recipes_df.iterrows():

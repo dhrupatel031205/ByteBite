@@ -5,10 +5,10 @@ import Signup from "./components/Signup.jsx";
 import Home from "./components/Home.jsx";
 import Profile from "./components/ProfilePage.jsx";
 import Model2 from "./components/model2.jsx";
-import Navbar from "./components/Navbar.jsx";
 import Model3 from "./components/Model3.jsx";
 import Model1 from "./components/Model1.jsx";
 import Model4 from "./components/model4.jsx";
+import Dashbord from "./components/Dashboard.jsx";
 
 function App() {
     return (
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/dashbord" element={<Dashbord />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/model2" element={<Model2 />} />

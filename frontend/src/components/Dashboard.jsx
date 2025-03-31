@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Navbar from "./Navbar";
 const Dashbord = () => {
   const [htmlContent, setHtmlContent] = useState("");
 
@@ -9,7 +9,10 @@ const Dashbord = () => {
       .then((html) => setHtmlContent(html));
   }, []);
 
-  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  return <>
+  <Navbar></Navbar>
+  <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  </>
 };
 
 export default Dashbord;
